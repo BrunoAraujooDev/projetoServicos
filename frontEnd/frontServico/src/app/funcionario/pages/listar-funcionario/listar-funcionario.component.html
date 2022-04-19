@@ -10,7 +10,9 @@
             <th mat-header-cell *matHeaderCellDef>
                 Nome
             </th>
-            <td mat-cell *matCellDef="let fun"> {{fun.nome}} </td>
+            <td mat-cell *matCellDef="let fun"> 
+                <a [routerLink]="'/funcionario/' + fun.idFuncionario">{{fun.nome}}</a>
+            </td>
         </ng-contaier>
         <ng-contaier matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef>

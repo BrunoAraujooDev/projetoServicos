@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { ListarFuncionarioComponent } from './pages/listar-funcionario/listar-funcionario.component';
 import { NovoFuncionarioComponent } from './pages/novo-funcionario/novo-funcionario.component';
 
@@ -12,6 +13,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: ListarFuncionarioComponent
+  },
+  {
+    path: ":idFuncionario", //para declarar que vai receber parâmetro via a rota utiliza os :
+    component: FuncionarioComponent
   }
 ];
 
