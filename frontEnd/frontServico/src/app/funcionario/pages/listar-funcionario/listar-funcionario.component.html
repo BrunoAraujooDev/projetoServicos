@@ -1,0 +1,41 @@
+<div class="flex-container">
+    <table mat-table [dataSource]="funcionarios" class="fun-table mat-elevation-z8">
+        <ng-contaier matColumnDef="idFuncionario">
+            <th mat-header-cell *matHeaderCellDef>
+                #
+            </th>
+            <td mat-cell *matCellDef="let fun"> {{fun.idFuncionario}} </td>
+        </ng-contaier>
+        <ng-contaier matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>
+                Nome
+            </th>
+            <td mat-cell *matCellDef="let fun"> {{fun.nome}} </td>
+        </ng-contaier>
+        <ng-contaier matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>
+                Email
+            </th>
+            <td mat-cell *matCellDef="let fun"> {{fun.email}} </td>
+        </ng-contaier>
+        <ng-contaier matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>
+                Ações
+            </th>
+            <td mat-cell *matCellDef="let fun">
+                <button mat-raised-button color="accent">
+                    <mat-icon>
+                        edit
+                    </mat-icon>
+                </button>
+                <button mat-raised-button color="warn" style="margin-left: 10px">
+                    <mat-icon>
+                        delete
+                    </mat-icon>
+                </button>
+            </td>
+        </ng-contaier>
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+</div>
