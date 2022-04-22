@@ -25,20 +25,6 @@ funcionario!: Funcionario
       item => this.funcionario = item
     )
 
-
-    // this.route.paramMap.subscribe(
-    //   url => {
-    //     this.idFuncionario = url.get("idFuncionario") || "";
-    //     console.log(this.idFuncionario)
-    //      this.funHttpService.getFuncionarioById(parseInt(this.idFuncionario))
-    //      .subscribe( 
-    //        item => {
-    //         this.infoFuncionario = item
-    //         console.log(this.infoFuncionario)
-    //        }
-    //      )
-    //   } 
-    // )
   }
 
 }
