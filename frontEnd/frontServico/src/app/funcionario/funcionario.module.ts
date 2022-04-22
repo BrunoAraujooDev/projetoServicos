@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FuncionarioHttpService } from './services/funcionario-http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
+import { IsNumberGuard } from './guards/is-number.guard';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FuncionarioComponent } from './pages/funcionario/funcionario.component'
     ReactiveFormsModule
   ],
   providers: [
-    FuncionarioHttpService
+    FuncionarioHttpService,
+    IsNumberGuard
   ]
 })
 export class FuncionarioModule { }

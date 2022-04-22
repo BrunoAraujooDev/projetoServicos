@@ -19,4 +19,5 @@ export class FuncionarioHttpService {
   getFuncionarioById(id: number): Observable<Funcionario>{
     return this.http.get<Funcionario>(`${this.baseURL}/${id}`);
   }
+
 }

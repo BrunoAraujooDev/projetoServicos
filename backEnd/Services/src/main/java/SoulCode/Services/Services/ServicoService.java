@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import SoulCode.Services.Models.Funcionario;
 import SoulCode.Services.Models.Servico;
+import SoulCode.Services.Models.statusServico;
 import SoulCode.Services.Repositories.FuncionarioRepository;
 import SoulCode.Services.Repositories.ServicoRepository;
 
@@ -21,6 +22,7 @@ public class ServicoService {
 	
 	@Autowired
 	FuncionarioRepository funcionarioRepository;
+	
 	
 	//findAll dos servicos cadastrados
 	public List<Servico> mostrarTodosServicos(){
@@ -51,5 +53,53 @@ public class ServicoService {
 		return servico;
 	}
 	
+	// procura os serviços pelo status dele
+	public List<Servico> buscarServicoPeloStatus(String status){
+		return servicoRepository.findByStatus(status);
+	}
+	
+	public List<Servico> buscarServicoSemAtribuicao(){
+		return servicoRepository.findByIdFuncionarioNull();
+	}
+	
+	//método para cadastro de um serviço. No momento do cadastro do novo servico o status tem que ficar como recebido
+	// no momneto do cadastro do novo serviço o ifFuncionario tem que ficar como null 
+	public Servico inserirServico(Servico servico) {
+		servico.setIdServico(null);
+		servico.setStatus(statusServico.RECEBIDO);
+		servico.setFuncionario(null);
+		return servicoRepository.save(servico);
+	}
+	
+	// metodo apra atribuir um determinado servico para um funcionario
+	public Servico atribuirFuncionario(Integer IdServico, Integer IdFuncionario) {
+		Optional<Funcionario> funcionario = funcionarioRepository.findById(IdFuncionario);
+		Servico servico = this.mostrarUmServico(IdServico);
+		servico.setFuncionario(funcionario.get());
+		servico.setStatus(statusServico.ATRIBUIDO);
+		
+		return servicoRepository.save(servico);
+	}
+	
+	//Método para mudar o status do serviço para concluido
+	public Servico concluirServico(Integer idServico) {
+		Servico servico = this.mostrarUmServico(idServico);
+		if(servico.getFuncionario() != null) {
+			servico.setStatus(statusServico.CONCLUIDO);		
+		}
+		return servicoRepository.save(servico);
+	}
+	
+	//método para alterar o serviço
+	public Servico alterarServico (Servico servico) {
+		mostrarUmServico(servico.getIdServico());
+		return servicoRepository.save(servico);
+	}
+	
+	//método para deletar o serviço
+	public void excluirServico (Integer id) {
+		mostrarUmServico(id);
+		servicoRepository.deleteById(id);
+	}
 	
 }
