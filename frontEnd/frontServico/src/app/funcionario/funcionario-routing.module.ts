@@ -24,7 +24,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: "editar-funcionario/:idFuncionario",
+    path: "edit/:idFuncionario",
     component: EditarFuncionarioComponent,
     canActivate: [
       IsNumberGuard

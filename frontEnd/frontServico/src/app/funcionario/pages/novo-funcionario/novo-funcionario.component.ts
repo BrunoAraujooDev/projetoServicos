@@ -41,7 +41,7 @@ export class NovoFuncionarioComponent implements OnInit {
 
     const funcionario: Funcionario = this.funcionarioData.value
     console.log('funcionario', funcionario)
-
+    
     this.http.postFuncionario(funcionario).subscribe(()=> {
       this.snackbar.open("Funcionário salvo com sucesso!", "OK", {duration: 2000})
       this.router.navigateByUrl("/funcionario")

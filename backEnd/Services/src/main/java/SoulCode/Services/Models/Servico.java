@@ -39,6 +39,10 @@ public class Servico {
 	@JoinColumn(name = "idFuncionario")
 	private Funcionario funcionario;
 	
+	@ManyToOne
+	@JoinColumn(name = "idCliente")
+	private Cliente cliente;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idOrcamento", unique = true)
 	private Orcamento orcamento;
@@ -98,5 +102,15 @@ public class Servico {
 	public void setOrcamento(Orcamento orcamento) {
 		this.orcamento = orcamento;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
 	
 }
