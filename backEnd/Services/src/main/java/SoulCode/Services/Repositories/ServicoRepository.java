@@ -6,10 +6,12 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import SoulCode.Services.Models.Funcionario;
 import SoulCode.Services.Models.Servico;
 
+@Repository
 public interface ServicoRepository extends JpaRepository<Servico, Integer>{
 	
 	// esse metodo vai trazer todos os servicos de um determinado funcionario

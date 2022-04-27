@@ -91,8 +91,10 @@ public class ServicoService {
 	}
 	
 	//método para alterar o serviço
-	public Servico alterarServico (Servico servico) {
+	public Servico alterarServico (Servico servico, Integer idFuncionario) {
 		mostrarUmServico(servico.getIdServico());
+		Funcionario funcionario = funcionarioRepository.getById(idFuncionario);
+		servico.setFuncionario(funcionario);
 		return servicoRepository.save(servico);
 	}
 	

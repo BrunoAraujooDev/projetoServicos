@@ -31,7 +31,7 @@
                     </span>
                 </mat-error>
             </mat-form-field>
-            <button mat-raised-button [color]="funcionarioData.get('foto')?.invalid ? 'warn' : 'primary'" type="button" class="btn" (click)="selectImage()">
+            <button mat-raised-button color="primary" type="button" class="btn" (click)="selectImage()">
                 Adicionar foto
             </button>
             <input type="file" id="file-input" placeholder="Coloque sua foto..."  #fileInput  formControlName="foto" accept="image/*"> 

@@ -1,6 +1,10 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Funcionario } from '../../models/funcionario';
+import { FuncionarioHttpService } from '../../services/funcionario-http.service';
 
 @Component({
   selector: 'app-novo-funcionario',
@@ -12,16 +16,17 @@ export class NovoFuncionarioComponent implements OnInit {
   funcionarioData: FormGroup = this.fb.group({
     nome: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    foto: ['', [Validators.required]]
+    foto: ['']
   })
-
-  funcionario: Funcionario[] = []
 
   @ViewChild('fileInput')
   fileInput!: ElementRef
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: FuncionarioHttpService,
+    private snackbar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,14 +36,17 @@ export class NovoFuncionarioComponent implements OnInit {
     this.fileInput.nativeElement.click()
   }
 
-  cadastrarFuncionario(): Funcionario[]{
-    
-    this.funcionario= [{
-      ...this.funcionarioData.value
-    }]
+  cadastrarFuncionario(): void{
 
-    console.log(this.funcionario)
 
-    return this.funcionario
+    const funcionario: Funcionario = this.funcionarioData.value
+    console.log('funcionario', funcionario)
+
+    this.http.postFuncionario(funcionario).subscribe(()=> {
+      this.snackbar.open("Funcionário salvo com sucesso!", "OK", {duration: 2000})
+      this.router.navigateByUrl("/funcionario")
+    }, 
+     (e: HttpErrorResponse) => console.log(e)
+    )
   }
 }

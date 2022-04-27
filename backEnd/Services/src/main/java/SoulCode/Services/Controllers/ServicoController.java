@@ -89,16 +89,18 @@ public class ServicoController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	//ResponseEntity -> retorna a requisição completa(status, body e cabeçalho)
+	
 	@PostMapping("/concluirServico/{idServico}")
 	public ResponseEntity<Servico> concluirServico(@PathVariable Integer idServico){
 		servicoService.concluirServico(idServico);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PutMapping("/servico/{id}")
-	public ResponseEntity<Servico> alterarServico(@PathVariable Integer id, @RequestBody Servico servico){
+	@PutMapping("/servico/{id}/{idFuncionario}")
+	public ResponseEntity<Servico> alterarServico(@PathVariable Integer id, @PathVariable Integer idFuncionario, @RequestBody Servico servico ){
 		servico.setIdServico(id);
-		servico = servicoService.alterarServico(servico);
+		servico = servicoService.alterarServico(servico, idFuncionario);
 		return ResponseEntity.noContent().build();
 	}
 	

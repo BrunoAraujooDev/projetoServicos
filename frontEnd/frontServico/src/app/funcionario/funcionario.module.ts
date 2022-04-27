@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FuncionarioComponent } from './pages/funcionario/funcionario.component';
 import { IsNumberGuard } from './guards/is-number.guard';
 import { EditarFuncionarioComponent } from './pages/editar-funcionario/editar-funcionario.component';
+import { FuncionarioDialogExcluirComponent } from './pages/funcionario-dialog-excluir/funcionario-dialog-excluir.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EditarFuncionarioComponent } from './pages/editar-funcionario/editar-fu
     NovoFuncionarioComponent,
     ListarFuncionarioComponent,
     FuncionarioComponent,
-    EditarFuncionarioComponent
+    EditarFuncionarioComponent,
+    FuncionarioDialogExcluirComponent
   ],
   imports: [
     CommonModule,

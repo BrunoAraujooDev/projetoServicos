@@ -1,0 +1,11 @@
+<div mat-dialog-content class="flex-container">
+
+    <h1>Você tem certeza que deseja excluir o {{funcionario.nome}}? </h1>
+    <div class="div-img">
+        <img [src]="funcionario.foto || 'https://miro.medium.com/max/1400/1*g09N-jl7JtVjVZGcd-vL2g.jpeg'" alt="foto de perfil do usuário" mat-card-image class="func-image">
+    </div>
+</div>
+<mat-dialog-actions class="dialog-buttons" >
+    <button mat-raised-button color="warn" [mat-dialog-close]="funcionario.idFuncionario">Sim</button>
+    <button mat-raised-button [mat-dialog-close]="false"color="primary">Não</button>
+</mat-dialog-actions>

@@ -1,14 +1,14 @@
 <section id="secao-editar">
     <form action="" class="form-editar">
             <img 
-                [src]=" funcionario?.foto || 'https://i.pinimg.com/originals/5a/72/e1/5a72e1f05f9e2e1b76a8438a7490dc3b.jpg'" 
+                [src]=" funcionario?.foto || 'https://miro.medium.com/max/1400/1*g09N-jl7JtVjVZGcd-vL2g.jpeg'" 
                 alt="Imagem de perfil do funcionário"
                 class="imagem-funcionario-editar"
             >
             <div class="div-icon-editar">
                 <mat-icon (click)="selectImage()" class="icon-editar-imagem">camera_alt</mat-icon>
             </div>
-            <input type="file" id="file-input-editar"  #fileInput accept="image/*"> 
+            <input type="file" id="file-input-editar"  #fileInput accept="image/*" (change)="changeImage()"> 
         <mat-form-field class="campo-editar" appearance="outline">
             <mat-label>
                 Nome

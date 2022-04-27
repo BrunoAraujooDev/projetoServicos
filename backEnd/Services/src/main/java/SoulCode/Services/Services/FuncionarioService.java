@@ -59,6 +59,11 @@ public class FuncionarioService {
 		funcionarioRepository.deleteById(id);
 	}
 	
-	
+	//salvar o caminho da  foto no db
+	public Funcionario salvarFoto(Integer id, String CaminhoFoto) {
+		Funcionario funcionario = mostrarUmFuncionario(id);
+		funcionario.setFoto(CaminhoFoto);
+		return funcionarioRepository.save(funcionario);
+	}
 
 }

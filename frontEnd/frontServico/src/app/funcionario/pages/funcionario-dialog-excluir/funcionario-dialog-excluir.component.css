@@ -1,0 +1,23 @@
+.flex-container{
+    height: 500px;
+    width: 600px;
+    font-size: 1rem;
+}
+
+.div-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.func-image{
+    height: 315px;
+    width: 500px;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.dialog-buttons{
+    display: flex;
+    justify-content: space-between;
+}

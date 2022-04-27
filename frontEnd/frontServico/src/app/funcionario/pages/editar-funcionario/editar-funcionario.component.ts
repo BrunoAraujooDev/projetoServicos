@@ -32,6 +32,11 @@ export class EditarFuncionarioComponent implements OnInit {
 
   selectImage(): void{
     this.fileInput.nativeElement.click()
+    
+  }
+
+  changeImage(): void{
+    this.funcionario.foto = this.fileInput.nativeElement.value
   }
 
 }

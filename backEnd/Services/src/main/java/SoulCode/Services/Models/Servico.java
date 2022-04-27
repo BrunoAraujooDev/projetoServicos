@@ -2,6 +2,7 @@ package SoulCode.Services.Models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,6 +38,10 @@ public class Servico {
 	@ManyToOne
 	@JoinColumn(name = "idFuncionario")
 	private Funcionario funcionario;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idOrcamento", unique = true)
+	private Orcamento orcamento;
 
 	public Integer getIdServico() {
 		return idServico;
@@ -84,6 +90,13 @@ public class Servico {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	
+
+	public Orcamento getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(Orcamento orcamento) {
+		this.orcamento = orcamento;
+	}
 	
 }
