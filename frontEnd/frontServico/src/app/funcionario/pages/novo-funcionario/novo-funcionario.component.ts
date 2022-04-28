@@ -22,6 +22,8 @@ export class NovoFuncionarioComponent implements OnInit {
   @ViewChild('fileInput')
   fileInput!: ElementRef
 
+  foto!: File
+
   constructor(
     private fb: FormBuilder,
     private http: FuncionarioHttpService,
@@ -32,21 +34,45 @@ export class NovoFuncionarioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectImage(): void{
+  selectImage(): void {
     this.fileInput.nativeElement.click()
   }
 
-  cadastrarFuncionario(): void{
+  submitFuncionario(): void {
 
 
-    const funcionario: Funcionario = this.funcionarioData.value
-    console.log('funcionario', funcionario)
-    
-    this.http.postFuncionario(funcionario).subscribe(()=> {
-      this.snackbar.open("Funcionário salvo com sucesso!", "OK", {duration: 2000})
-      this.router.navigateByUrl("/funcionario")
-    }, 
-     (e: HttpErrorResponse) => console.log(e)
+    const funcionario = this.funcionarioData.value
+    funcionario.foto = null
+
+    this.http.postFuncionario(funcionario).subscribe((funcionario) => {
+
+      if (this.foto) {
+        const formData: FormData = new FormData()
+        formData.append("foto", new Blob([this.foto], { type: this.foto.type }))
+
+        const fileName = `funcionario-${funcionario.idFuncionario}.${this.foto.type.split("/")[1]}`
+
+        this.http.addImage(funcionario.idFuncionario || 0, formData, fileName).subscribe(() => {
+          this.showMessage()
+        },
+          (e: HttpErrorResponse) => this.snackbar.open(`Ocorreu um erro ao salvar! Erro ${e.status}`, "OK", { duration: 2000 })
+        )
+      } else {
+        this.showMessage()
+      }
+
+    },
+      (e: HttpErrorResponse) => this.snackbar.open(`Ocorreu um erro ao salvar! Erro ${e.status}`, "OK", { duration: 2000 })
     )
   }
+
+  fileChange(event: any) {
+    this.foto = event.target.files[0]
+  }
+
+  showMessage(): void{
+    this.snackbar.open("Funcionário salvo com sucesso!", "OK", { duration: 2000 })
+    this.router.navigateByUrl("/funcionario")
+  }
+
 }

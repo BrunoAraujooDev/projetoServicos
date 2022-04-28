@@ -60,7 +60,7 @@ public class FuncionarioController {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(funcionario.getIdFuncionario()).toUri();
 		
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(funcionario);
 	}
 	
 	@PutMapping("/funcionario/{id}")

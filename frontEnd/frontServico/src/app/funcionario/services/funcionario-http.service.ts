@@ -28,4 +28,8 @@ export class FuncionarioHttpService {
     return this.http.post<Funcionario>(this.baseURL, funcionario);
   }
 
+  addImage(id: number, data: FormData, fileName: string): Observable<void>{
+    return this.http.post<void>(`${this.baseURL}/envioFoto/${id}?nome=${fileName}`, data);
+  }
+
 }

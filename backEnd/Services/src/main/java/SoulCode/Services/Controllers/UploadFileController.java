@@ -22,10 +22,10 @@ public class UploadFileController {
 	FuncionarioService funcionarioService;
 	
 	@PostMapping("/funcionario/envioFoto/{id}")
-	public ResponseEntity<String> enviarDados(@PathVariable Integer id,
+	public ResponseEntity<Void> enviarDados(@PathVariable Integer id,
 			MultipartFile foto, @RequestParam("nome") String nome){
 		String fileName = nome;
-		String uploadDir = "D:/Desktop/projetos/java/projetoServico/frontEnd/frontServico/src/assets";
+		String uploadDir = "D:/Desktop/projetos/java/projetoServico/frontEnd/frontServico/src/assets/imagens";
 		// /d/Desktop/projetos/java/projetoServico/frontEnd/frontServico/src/assets
 		String nomeMaisCaminho = "assets/imagens/" + nome;
 		
@@ -39,7 +39,7 @@ public class UploadFileController {
 		
 		System.out.println("Arquivo enviado com sucesso: " + nomeMaisCaminho);
 		
-		return ResponseEntity.ok("Arquivo enviado");
+		return ResponseEntity.ok().build();
 		
 	}
 

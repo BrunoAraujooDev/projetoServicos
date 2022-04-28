@@ -1,6 +1,6 @@
 <div class="flex-container">
     <mat-card>
-        <form action="" id="main-form" [formGroup]="funcionarioData" (ngSubmit)="cadastrarFuncionario()">
+        <form action="" id="main-form" [formGroup]="funcionarioData" (ngSubmit)="submitFuncionario()">
             <mat-form-field appearance="outline">
                 <mat-label>
                     Nome do Funcionário
@@ -34,7 +34,7 @@
             <button mat-raised-button color="primary" type="button" class="btn" (click)="selectImage()">
                 Adicionar foto
             </button>
-            <input type="file" id="file-input" placeholder="Coloque sua foto..."  #fileInput  formControlName="foto" accept="image/*"> 
+            <input type="file" id="file-input" placeholder="Coloque sua foto..."  #fileInput  formControlName="foto" accept="image/*" (change)="fileChange($event)"> 
             <button mat-raised-button color="accent" type="submit" style="margin-top: 10px;">
                     Cadastrar
             </button>
