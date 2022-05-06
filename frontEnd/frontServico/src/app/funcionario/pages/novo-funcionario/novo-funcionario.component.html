@@ -1,4 +1,9 @@
 <div class="flex-container">
+    <button mat-fab color="primary" class="btn-back" routerLink="/funcionario">
+        <mat-icon>
+            arrow_left
+        </mat-icon>
+    </button>
     <mat-card>
         <form action="" id="main-form" [formGroup]="funcionarioData" (ngSubmit)="submitFuncionario()">
             <mat-form-field appearance="outline">
@@ -31,11 +36,11 @@
                     </span>
                 </mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary" type="button" class="btn" (click)="selectImage()">
+            <button mat-raised-button color="primary" type="button" (click)="selectImage()">
                 Adicionar foto
             </button>
             <input type="file" id="file-input" placeholder="Coloque sua foto..."  #fileInput  formControlName="foto" accept="image/*" (change)="fileChange($event)"> 
-            <button mat-raised-button color="accent" type="submit" style="margin-top: 10px;">
+            <button mat-raised-button color="accent" type="submit" style="margin-top: 10px;" [disabled]="funcionarioData.invalid">
                     Cadastrar
             </button>
 

@@ -1,0 +1,15 @@
+.flex-container{
+    height: 200px;
+    width: 400px;
+    font-size: 1rem;
+}
+
+.div-texto{
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.dialog-buttons{
+    display: flex;
+    justify-content: space-between;
+}

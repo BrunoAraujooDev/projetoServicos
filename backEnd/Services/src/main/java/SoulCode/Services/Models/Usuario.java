@@ -1,13 +1,18 @@
 package SoulCode.Services.Models;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 
 @Entity
 public class Usuario implements UserDetails{
@@ -19,6 +24,13 @@ public class Usuario implements UserDetails{
 	private String nomeCompleto;
 	
 	private String senha;
+	
+	@ManyToMany
+	@JoinTable(name = "usuarios_roles", 
+			joinColumns = @JoinColumn(name = "idUsuario", referencedColumnName = "login"), 
+			inverseJoinColumns = @JoinColumn( name = "idRole", referencedColumnName = "nomeRole"))
+	private List<Role> roles;
+	
 
 	public String getLogin() {
 		return login;
@@ -47,7 +59,7 @@ public class Usuario implements UserDetails{
 	//traz as autorizações que o usuário tem
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return new ArrayList<>();
+		return (Collection<? extends GrantedAuthority>) this.roles;
 	}
 
 	@Override

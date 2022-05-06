@@ -12,6 +12,9 @@ import { FuncionarioComponent } from './pages/funcionario/funcionario.component'
 import { IsNumberGuard } from './guards/is-number.guard';
 import { EditarFuncionarioComponent } from './pages/editar-funcionario/editar-funcionario.component';
 import { FuncionarioDialogExcluirComponent } from './pages/funcionario-dialog-excluir/funcionario-dialog-excluir.component';
+import { DialogVerificationComponent } from './components/dialog-verification/dialog-verification.component';
+import { AskExitGuard } from './guards/ask-exit.guard';
+import { CanEnterGuard } from './guards/can-enter.guard';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { FuncionarioDialogExcluirComponent } from './pages/funcionario-dialog-ex
     ListarFuncionarioComponent,
     FuncionarioComponent,
     EditarFuncionarioComponent,
-    FuncionarioDialogExcluirComponent
+    FuncionarioDialogExcluirComponent,
+    DialogVerificationComponent
   ],
   imports: [
     CommonModule,
@@ -31,8 +35,9 @@ import { FuncionarioDialogExcluirComponent } from './pages/funcionario-dialog-ex
     ReactiveFormsModule
   ],
   providers: [
-    FuncionarioHttpService,
-    IsNumberGuard
+    IsNumberGuard,
+    AskExitGuard,
+    CanEnterGuard
   ]
 })
 export class FuncionarioModule { }

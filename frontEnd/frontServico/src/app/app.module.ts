@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
+import { DialogExcluirComponent } from './servicos/pages/dialog-excluir/dialog-excluir.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

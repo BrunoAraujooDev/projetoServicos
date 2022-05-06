@@ -1,17 +1,21 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { Funcionario } from '../../models/funcionario';
+import { Router, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CanDeactivate } from '../../models/canDeactivate';
 import { FuncionarioHttpService } from '../../services/funcionario-http.service';
+import { DialogVerificationComponent } from '../../components/dialog-verification/dialog-verification.component';
+import { AuthenticationService } from 'src/app/auth/services/authentication.service';
 
 @Component({
   selector: 'app-novo-funcionario',
   templateUrl: './novo-funcionario.component.html',
   styleUrls: ['./novo-funcionario.component.css']
 })
-export class NovoFuncionarioComponent implements OnInit {
+export class NovoFuncionarioComponent implements OnInit, CanDeactivate {
 
   funcionarioData: FormGroup = this.fb.group({
     nome: ['', [Validators.required]],
@@ -24,12 +28,30 @@ export class NovoFuncionarioComponent implements OnInit {
 
   foto!: File
 
+
   constructor(
     private fb: FormBuilder,
     private http: FuncionarioHttpService,
     private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
+    private auth: AuthenticationService
   ) { }
+
+
+  canDeactivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+
+
+    if(this.funcionarioData.dirty && localStorage.getItem('token') != null){
+      const dialogRef = this.dialog.open(DialogVerificationComponent)
+      
+      return dialogRef.afterClosed()
+
+    } else {
+      return true;
+    }
+    
+  }
 
   ngOnInit(): void {
   }
@@ -53,12 +75,14 @@ export class NovoFuncionarioComponent implements OnInit {
         const fileName = `funcionario-${funcionario.idFuncionario}.${this.foto.type.split("/")[1]}`
 
         this.http.addImage(funcionario.idFuncionario || 0, formData, fileName).subscribe(() => {
+          this.funcionarioData.reset();
           this.showMessage()
         },
           (e: HttpErrorResponse) => this.snackbar.open(`Ocorreu um erro ao salvar! Erro ${e.status}`, "OK", { duration: 2000 })
         )
       } else {
-        this.showMessage()
+        this.funcionarioData.reset();
+        this.showMessage();
       }
 
     },

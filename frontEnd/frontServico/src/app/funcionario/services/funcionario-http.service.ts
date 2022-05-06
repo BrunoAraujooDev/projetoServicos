@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Funcionario } from '../models/funcionario';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FuncionarioHttpService {
 
   private readonly baseURL = "http://localhost:8080/servicos/funcionario";
@@ -30,6 +32,10 @@ export class FuncionarioHttpService {
 
   addImage(id: number, data: FormData, fileName: string): Observable<void>{
     return this.http.post<void>(`${this.baseURL}/envioFoto/${id}?nome=${fileName}`, data);
+  }
+
+  updateFuncionario( funcionario: Funcionario): Observable<Funcionario>{
+    return this.http.put<Funcionario>(`${this.baseURL}/${funcionario.idFuncionario}`, funcionario)
   }
 
 }

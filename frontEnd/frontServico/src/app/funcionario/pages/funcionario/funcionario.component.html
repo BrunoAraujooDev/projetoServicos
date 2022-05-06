@@ -1,6 +1,11 @@
 <div class="flex-container">
-    <mat-card>
-        <img [src]="funcionario.foto || 'https://miro.medium.com/max/1400/1*g09N-jl7JtVjVZGcd-vL2g.jpeg'" alt="foto de perfil do usuário" mat-card-image class="func-image">
+    <button mat-fab color="primary" class="btn-back" routerLink="/funcionario">
+        <mat-icon>
+            arrow_left
+        </mat-icon>
+    </button>
+    <mat-card *ngIf="funcionario != undefined">
+        <img [src]="funcionario.foto ? funcionario.foto: '/assets/imagem_perfil.jpeg'" alt="foto de perfil do usuário" mat-card-image class="func-image">
         <mat-card-content>
             <mat-card-title>
                 {{funcionario.nome}}

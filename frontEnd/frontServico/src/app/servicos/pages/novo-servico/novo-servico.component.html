@@ -1,0 +1,77 @@
+<div class="flex-container">
+    <button mat-fab color="primary" class="btn-back" routerLink="/servicos">
+        <mat-icon>
+            arrow_left
+        </mat-icon>
+    </button>
+    <mat-card>
+        <form action="" id="main-form" [formGroup]="servicoForm" (ngSubmit)="submit()">
+            <mat-form-field>
+                <mat-label>
+                    Título
+                </mat-label>
+                <input 
+                    matInput
+                    formControlName="titulo"
+                > 
+                <mat-error>
+                    <span *ngIf="servicoForm.get('titulo')?.getError('required')">
+                        Este campo é obrigatório
+                    </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Descrição
+                </mat-label>
+                <textarea
+                    name="" 
+                    id="" 
+                    cols="70" 
+                    rows="10"
+                    maxlength="100"
+                    formControlName="descricao"
+                    >
+                </textarea>
+                <mat-error>
+                    <span *ngIf="servicoForm.get('descricao')?.getError('required')">
+                        Este campo é obrigatório
+                    </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Status
+                </mat-label>
+                <select name="status" formControlName="status">
+                    <option value="RECEBIDO" selected>Recebido</option>
+                    <option value="ATRIBUIDO">Atribuído</option>
+                    <option value="CONCLUIDO">Concluído</option>
+                    <option value="ARQUIVADO">Arquivado</option>
+                </select>
+                <mat-error>
+                    <span *ngIf="servicoForm.get('status')?.getError('required')">
+                        Este campo é obrigatório
+                    </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Status
+                </mat-label>
+                <input type="date" formControlName="dataEntrada">
+                <mat-error>
+                    <span *ngIf="servicoForm.get('dataEntrada')?.getError('required')">
+                        Este campo é obrigatório
+                    </span>
+                </mat-error>
+            </mat-form-field>
+        
+            <button mat-raised-button color="primary" type="submit" style="margin-top: 10px;" [disabled]="servicoForm.invalid">
+                    Cadastrar
+            </button>
+
+        </form>
+    </mat-card>
+</div>
+

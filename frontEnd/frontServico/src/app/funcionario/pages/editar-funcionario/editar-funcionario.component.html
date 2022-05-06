@@ -1,25 +1,30 @@
 <section id="secao-editar">
-    <form action="" class="form-editar">
+    <button mat-fab color="primary" class="btn-back" routerLink="/funcionario">
+        <mat-icon>
+            arrow_left
+        </mat-icon>
+    </button>
+    <form action="" class="form-editar" [formGroup]="funcionarioForm" (ngSubmit)="submit()">
             <img 
                 [src]=" funcionario?.foto || 'https://miro.medium.com/max/1400/1*g09N-jl7JtVjVZGcd-vL2g.jpeg'" 
                 alt="Imagem de perfil do funcionário"
                 class="imagem-funcionario-editar"
             >
             <div class="div-icon-editar">
-                <mat-icon (click)="selectImage()" class="icon-editar-imagem">camera_alt</mat-icon>
+                <mat-icon (click)="fileInput.click()" class="icon-editar-imagem">camera_alt</mat-icon>
             </div>
-            <input type="file" id="file-input-editar"  #fileInput accept="image/*" (change)="changeImage()"> 
+            <input type="file" id="file-input-editar"  #fileInput accept="image/*" (change)="changeImage($event)" formControlName="foto"> 
         <mat-form-field class="campo-editar" appearance="outline">
             <mat-label>
                 Nome
             </mat-label>
-            <input matInput [value]="funcionario?.nome">
+            <input matInput formControlName="nome">
         </mat-form-field>
         <mat-form-field class="campo-editar" appearance="outline">
             <mat-label>
                 Email
             </mat-label>
-            <input matInput [value]="funcionario?.email">
+            <input matInput formControlName="email">
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" style="margin-top: 10px;">
             Editar

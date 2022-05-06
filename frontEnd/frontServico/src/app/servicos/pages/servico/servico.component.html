@@ -1,0 +1,28 @@
+<div class="flex-container">
+    <mat-card *ngFor="let serv of servicos, let i = index" class="card-servico" appearance="">
+        <mat-card-title class="card-title">
+            {{serv.titulo}}
+        </mat-card-title>
+        <mat-card-content class="card-content">
+            <p class="card-descricao">{{serv.descricao}}</p>
+            <div>
+                <p><strong>Status:</strong> {{serv.status.toLowerCase()}} </p>
+                <p><strong>Data de entrada:</strong> {{serv.dataEntrada | date : 'dd/MM/yyyy'}} </p>
+                <p><strong>Funcionário:</strong> {{serv.funcionario.nome}} </p>
+            </div>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions class="card-actions">
+            <button mat-raised-button color="accent" routerLink="novo-servico">
+                <mat-icon>
+                    edit
+                </mat-icon>
+            </button>
+        <button mat-raised-button color="warn" style="margin-left: 10px" (click)="openDeleteDialog(i)">
+            <mat-icon>
+                delete
+            </mat-icon>
+        </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

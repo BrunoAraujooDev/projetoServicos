@@ -9,6 +9,7 @@
     display: none;
 }
 
-.btn{
-    width: 150px;
+.btn-back{
+    position: absolute;
+    left: 2rem;
 }

@@ -1,0 +1,11 @@
+<div mat-dialog-content class="flex-container">
+
+    <h1>Você tem certeza que deseja excluir o serviço ? </h1>
+    <div class="div-texto">
+        <p><strong>Serviço: </strong> {{servico.descricao}} </p>
+    </div>
+</div>
+<mat-dialog-actions class="dialog-buttons" >
+    <button mat-raised-button color="warn" [mat-dialog-close]="servico.idServico">Sim</button>
+    <button mat-raised-button [mat-dialog-close]="false"color="primary">Não</button>
+</mat-dialog-actions>

@@ -58,3 +58,8 @@
     padding-left: 10px;
 }
 
+.btn-back{
+    position: absolute;
+    left: 2rem;
+}
+

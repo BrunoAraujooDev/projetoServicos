@@ -1,4 +1,9 @@
 .func-image{
-    height: 250px;
-    width: 300px;
+    height: 350px;
+    width: 400px;
+}
+
+.btn-back{
+    position: absolute;
+    left: 2rem;
 }
